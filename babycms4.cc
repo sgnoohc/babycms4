@@ -19,11 +19,12 @@ int main(int argc, char* argv[])
             ("i,input", "Comma separated Input CMS4 root path. Wildcard supported only at the most lower level directory. (e.g. '/path/to/my/ttbar/merged_*.root,/path/to/my/dy/merged_*.root')", cxxopts::value<std::string>(), "file1.root,file2.root")
             ("n,nevt", "Number of events to process.", cxxopts::value<int>()->default_value("-1"), "NEVENTS")
             ("treename", "TTree name in each root file.", cxxopts::value<std::string>()->default_value("Events"), "TREENAME")
-            ("help", "Print help")
+            ("h,help", "Print help")
             ;
 
         options.parse(argc, argv);
 
+        // Print help message if --help or -h is provided
         if (options.count("help"))
         {
             RooUtil::print(options.help());
