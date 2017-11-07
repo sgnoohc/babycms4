@@ -106,6 +106,7 @@ void BabyCMS4::run()
     core.createJetBranches(ttree);
     core.createFatJetBranches(ttree);
     core.createMETBranches(ttree);
+    core.createIsoTrackBranches(ttree);
     core.createLeptonBranches(ttree,
             {
                 {VVV_cutbased_tight         , "VVV_cutbased_tight"        },
@@ -140,6 +141,7 @@ void BabyCMS4::run()
         core.setJetBranches(ttree);
         core.setFatJetBranches(ttree);
         core.setMETBranches(ttree);
+        core.setIsoTrackBranches(ttree);
         core.setLeptonBranches(ttree);
         core.setTrigBranches(ttree);
 
