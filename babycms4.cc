@@ -108,10 +108,11 @@ void BabyCMS4::run()
     core.createMETBranches(ttree);
     core.createLeptonBranches(ttree,
             {
-                {VVV_cutbased_tight    , "VVV_cutbased_tight"   },
-                {VVV_cutbased_fo       , "VVV_cutbased_fo"      },
-                {VVV_cutbased_fo_noiso , "VVV_cutbased_fo_noiso"},
-                {VVV_cutbased_veto     , "VVV_cutbased_veto"    }
+                {VVV_cutbased_tight         , "VVV_cutbased_tight"        },
+                {VVV_cutbased_fo            , "VVV_cutbased_fo"           },
+                {VVV_cutbased_fo_noiso      , "VVV_cutbased_fo_noiso"     },
+                {VVV_cutbased_fo_noiso_noip , "VVV_cutbased_fo_noiso_noip"},
+                {VVV_cutbased_veto          , "VVV_cutbased_veto"         }
             }
             );
     core.createTrigBranches(ttree,
@@ -142,7 +143,7 @@ void BabyCMS4::run()
         core.setLeptonBranches(ttree);
         core.setTrigBranches(ttree);
 
-        if (core.nCount(ttree, "lep_pass_VVV_cutbased_fo") < 2)
+        if (core.nCount(ttree, "lep_pass_VVV_cutbased_fo_noiso_noip") < 1)
             continue;
 
         ttree->fill();
