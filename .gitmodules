@@ -1,0 +1,12 @@
+[submodule "CORE"]
+	path = CORE
+	url = git@github.com:cmstas/CORE.git
+[submodule "rooutil"]
+	path = rooutil
+	url = git@github.com:sgnoohc/rooutil.git
+[submodule "COREHelper"]
+	path = COREHelper
+	url = git@github.com:sgnoohc/COREHelper.git
+[submodule "cxxopts"]
+	path = cxxopts
+	url = git@github.com:jarro2783/cxxopts.git
