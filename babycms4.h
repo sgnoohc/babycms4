@@ -24,9 +24,11 @@ class BabyCMS4
 {
     public:
         // Members
-        CORE2016 core2016;
+        CORE2016 core;
         TChain* chain;
         int n_evt_to_process;
+        TString core_opt_str;
+        TString output_file_name;
 
         // Functions
         BabyCMS4();
