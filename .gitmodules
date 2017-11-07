@@ -7,6 +7,7 @@
 [submodule "COREHelper"]
 	path = COREHelper
 	url = git@github.com:sgnoohc/COREHelper.git
+	branch = cms4
 [submodule "cxxopts"]
 	path = cxxopts
 	url = git@github.com:jarro2783/cxxopts.git
