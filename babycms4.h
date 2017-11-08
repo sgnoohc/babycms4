@@ -31,8 +31,6 @@ class BabyCMS4
         TString output_file_name;
 
         // Functions
-        BabyCMS4();
-        ~BabyCMS4();
         void run();
 };
 

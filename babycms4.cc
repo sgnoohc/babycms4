@@ -78,16 +78,6 @@ int main(int argc, char* argv[])
 }
 
 //_________________________________________________________________________________________________
-BabyCMS4::BabyCMS4()
-{
-}
-
-//_________________________________________________________________________________________________
-BabyCMS4::~BabyCMS4()
-{
-}
-
-//_________________________________________________________________________________________________
 void BabyCMS4::run()
 {
     // Load and set all the configurational stuff. (e.g. JES, TMVA, GRL, and etc.)
@@ -100,50 +90,14 @@ void BabyCMS4::run()
     TFile* ofile = new TFile(output_file_name, "recreate");
     TTreeX* ttree = new TTreeX("t", "Baby Ntuple");
 
-    // Create output TTree branches.
-    core.createEventBranches(ttree);
-    core.createGenBranches(ttree);
-    core.createJetBranches(ttree);
-    core.createFatJetBranches(ttree);
-    core.createMETBranches(ttree);
-    core.createIsoTrackBranches(ttree);
-    core.createLeptonBranches(ttree,
-            {
-                {VVV_cutbased_tight         , "VVV_cutbased_tight"        },
-                {VVV_cutbased_fo            , "VVV_cutbased_fo"           },
-                {VVV_cutbased_fo_noiso      , "VVV_cutbased_fo_noiso"     },
-                {VVV_cutbased_fo_noiso_noip , "VVV_cutbased_fo_noiso_noip"},
-                {VVV_cutbased_veto          , "VVV_cutbased_veto"         }
-            }
-            );
-    core.createTrigBranches(ttree,
-            {
-                "HLT_Ele",
-                "HLT_Mu",
-                "HLT_TkMu",
-                "HLT_IsoMu",
-                "HLT_IsoTkMu",
-            }
-            );
+    // create std branches
+    core.createStdBranches(ttree);
 
     // Loop!
     while (looper.nextEvent())
     {
         // Reset all the branch values.
-        ttree->clear();
-
-        // Set the jet corrector based on the event.
-        core.setJetCorrector();
-
-        // Set the branches.
-        core.setEventBranches(ttree);
-        core.setGenBranches(ttree);
-        core.setJetBranches(ttree);
-        core.setFatJetBranches(ttree);
-        core.setMETBranches(ttree);
-        core.setIsoTrackBranches(ttree);
-        core.setLeptonBranches(ttree);
-        core.setTrigBranches(ttree);
+        core.setStdBranches(ttree);
 
         if (core.nCount(ttree, "lep_pass_VVV_cutbased_fo_noiso_noip") < 1)
             continue;
@@ -153,7 +107,7 @@ void BabyCMS4::run()
 
     // Save the output.
     ofile->cd();
-    ttree->getTree()->Write();
+    ttree->write();
     ofile->Close();
 }
 
