@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
     //---------------------------------------------------------------------------------------------
     try
     {
-        cxxopts::Options options(argv[0], "Baby Maker from CMS4");
+        cxxopts::Options options(argv[0], "Baby Maker from CMS4 (or CMS3)");
 
         options.positional_help("[optional args]");
 
@@ -36,6 +36,7 @@ int main(int argc, char* argv[])
         // Required options
         if (!options.count("input"))
         {
+            RooUtil::print(options.help());
             RooUtil::error("option --input missing");
             exit(1);
         }
