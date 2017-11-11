@@ -19,6 +19,7 @@
 #include "rooutil/looper.h"
 #include "rooutil/stringutil.h"
 #include "rooutil/fileutil.h"
+#include "rooutil/eventlist.h"
 
 class BabyCMS4
 {

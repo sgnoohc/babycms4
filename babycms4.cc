@@ -18,6 +18,7 @@ int main(int argc, char* argv[])
         options.add_options()
             ("i,input", "Comma separated Input CMS4 root path. Wildcard supported only at the most lower level directory. (e.g. '/path/to/my/ttbar/merged_*.root,/path/to/my/dy/merged_*.root')", cxxopts::value<std::string>(), "file1.root,file2.root")
             ("o,output", "Output ROOT file path.", cxxopts::value<std::string>()->default_value("output.root"), "OUTPUT")
+            ("p,option", "Option string to be passed on to COREHelper.", cxxopts::value<std::string>()->default_value("applyJEC"), "OPTION")
             ("n,nevt", "Number of events to process.", cxxopts::value<int>()->default_value("-1"), "NEVENTS")
             ("treename", "TTree name in each root file.", cxxopts::value<std::string>()->default_value("Events"), "TREENAME")
             ("h,help", "Print help")
@@ -57,6 +58,7 @@ int main(int argc, char* argv[])
         // The hadoop directory path contains the CMS4 sample name.
         // To first order the CMS4 sample name is enough to configure what we need to do.
         babycms4.core_opt_str = options["input"].as<std::string>().c_str();
+        babycms4.core_opt_str += options["option"].as<std::string>().c_str();
 
         // Set the output root file
         babycms4.output_file_name = options["output"].as<std::string>().c_str();
